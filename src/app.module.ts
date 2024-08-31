@@ -8,10 +8,10 @@ import { ItemModule } from './pr-helper/item/item.module';
 import { DocumentModule } from './pr-helper/document/document.module';
 import { TimelinesModule } from './pr-helper/timelines/timelines.module';
 import { TenderingModule } from './tendering/tendering.module';
-import { ConfigurationModule } from './tn-helper/configuration/configuration.module';
-import { BiddingModule } from './tn-helper/bidding/bidding.module';
-import { EvaluationModule } from './tn-helper/evaluation/evaluation.module';
-import { InvitationModule } from './tn-helper/invitation/invitation.module';
+import { ConfigurationModule } from './ten-helper/configuration/configuration.module';
+import { BiddingModule } from './ten-helper/bidding/bidding.module';
+import { EvaluationModule } from './ten-helper/evaluation/evaluation.module';
+import { InvitationModule } from './ten-helper/invitation/invitation.module';
 
 @Module({
   imports: [
