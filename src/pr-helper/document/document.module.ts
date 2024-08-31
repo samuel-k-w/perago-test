@@ -1,7 +1,12 @@
 import { Module } from '@nestjs/common';
 import { DocumentController } from './document.controller';
+import { DocumentService } from './document.service';
+import { HttpModule } from "@nestjs/axios";
 
 @Module({
-  controllers: [DocumentController]
+  imports: [HttpModule],
+  controllers: [DocumentController],
+  providers: [DocumentService],
+  exports: [DocumentService],
 })
 export class DocumentModule {}

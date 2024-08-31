@@ -1,0 +1,11 @@
+nest generate module pr-helper/timelines
+nest generate controller pr-helper/timelines
+nest generate service pr-helper/timelines
+
+nest generate module td-helper/timelines
+nest generate controller td-helper/timelines
+nest generate service td-helper/timelines
+
+https://dev-bo.megp.peragosystems.com/planning/api/procurement-mechanisms/8856b629-cbba-414b-af82-27b9bde5471a
+
+{"tenantId":0,"createdAt":"2024-08-02T07:10:24.269Z","updatedAt":"2024-08-02T07:10:24.269Z","deletedAt":null,"organizationId":"4326f20b-ff3d-4868-bf43-1b76d2766740","organizationName":"Asssociation of Early Childhood Development in Malawi","fundingSource":"Donor","procurementMethod":"Request for Quotation (RFQ)","procurementType":"Goods","donor":["e6cf9774-9c65-4b63-bdac-f4ccba6e8734"],"targetGroup":["Marginalized Group"],"isOnline":true,"contract":{},"procurementRequisitionId":"674eca82-3209-4bb1-a48a-bb2d4f3c920e","justification":[{"key":"procurementMethod","status":"pass"},{"key":"targetGroup","status":"pass"}]}
