@@ -1,26 +1,42 @@
 import { Injectable } from '@nestjs/common';
-import { CreateConfigurationDto } from './dto/create-configuration.dto';
-import { UpdateConfigurationDto } from './dto/update-configuration.dto';
+import { HttpService } from '@nestjs/axios';
+import { AxiosResponse } from 'axios';
+import { Observable } from 'rxjs';
+import { faker } from '@faker-js/faker';
 
 @Injectable()
 export class ConfigurationService {
-  create(createConfigurationDto: CreateConfigurationDto) {
-    return 'This action adds a new configuration';
+  constructor(private httpService: HttpService) {}
+
+  generateFakeBudgetData(): object {
+    return {
+      budgetId: '7574b4bb-91a7-4489-823d-e73dff3e5ed5',
+      budgetYearId: '28974b42-9b86-45d6-b301-69496456dac6',
+      currency: 'MKW',
+      description: faker.lorem.words(10),
+      isMultiYear: faker.datatype.boolean(),
+      name: `by samuel entern: ${faker.commerce.productName()}`,
+      procurementApplication: 'tendering',
+      remark: faker.lorem.sentence(),
+      totalEstimatedAmount: faker.datatype.number({
+        min: 10000000,
+        max: 999999999,
+      }),
+      type: 'Others',
+    };
   }
 
-  findAll() {
-    return `This action returns all configuration`;
-  }
+  sendFakeData(token: string, id: string): Observable<AxiosResponse<any>> {
+    const fakeData = this.generateFakeBudgetData();
 
-  findOne(id: number) {
-    return `This action returns a #${id} configuration`;
-  }
-
-  update(id: number, updateConfigurationDto: UpdateConfigurationDto) {
-    return `This action updates a #${id} configuration`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} configuration`;
+    return this.httpService.post(
+      'https://dev-bo.megp.peragosystems.com/planning/api/procurement-requisitions',
+      fakeData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
   }
 }

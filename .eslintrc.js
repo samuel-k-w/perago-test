@@ -1,11 +1,19 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
+  endOfLine: 'auto',
   parserOptions: {
     project: 'tsconfig.json',
-    tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
+
+  rules: {
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+    endOfLine: 'auto',
+  },
+
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
