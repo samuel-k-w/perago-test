@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { BiddingService } from './bidding.service';
-import { BiddingController } from './bidding.controller';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  controllers: [BiddingController],
+  imports: [HttpModule],
+  controllers: [],
   providers: [BiddingService],
   exports: [BiddingService],
 })

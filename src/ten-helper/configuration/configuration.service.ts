@@ -2,41 +2,53 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
-import { faker } from '@faker-js/faker';
 
 @Injectable()
 export class ConfigurationService {
+  urlStandardProcurementDocument =
+    'https://dev-bo.megp.peragosystems.com/tendering/api/tender-personals';
+  urlPersonnelList =
+    'https://dev-bo.megp.peragosystems.com/tendering/api/tender-spd';
+
   constructor(private httpService: HttpService) {}
 
-  generateFakeBudgetData(): object {
-    return {
-      budgetId: '7574b4bb-91a7-4489-823d-e73dff3e5ed5',
-      budgetYearId: '28974b42-9b86-45d6-b301-69496456dac6',
-      currency: 'MKW',
-      description: faker.lorem.words(10),
-      isMultiYear: faker.datatype.boolean(),
-      name: `by samuel entern: ${faker.commerce.productName()}`,
-      procurementApplication: 'tendering',
-      remark: faker.lorem.sentence(),
-      totalEstimatedAmount: faker.datatype.number({
-        min: 10000000,
-        max: 999999999,
-      }),
-      type: 'Others',
+  create(token: string, id: string) {
+    const standardProcurementDocument = {
+      evaluated: false,
+      order: 20,
+      position: 'my-position_test',
+      // tenderId:faker.string.uuid(),
+      tenderId: id,
     };
-  }
 
-  sendFakeData(token: string, id: string): Observable<AxiosResponse<any>> {
-    const fakeData = this.generateFakeBudgetData();
+    const personnelList = {
+      spdId: '831622bc-af08-48c8-a297-b102f5ec45f0',
+      tenderId: id,
+    };
 
-    return this.httpService.post(
-      'https://dev-bo.megp.peragosystems.com/planning/api/procurement-requisitions',
-      fakeData,
+    const procurementMechanism = {
+      invitationType: 'open',
+      marketApproach: 'national',
+      stage: 1,
+      stageType: 'single',
+      tenderId: id,
+      PRProcurementMechanisms: {},
+    };
+
+    this.httpService.post(
+      this.urlStandardProcurementDocument,
+      standardProcurementDocument,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       },
     );
+
+    this.httpService.post(this.urlPersonnelList, personnelList, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 }
