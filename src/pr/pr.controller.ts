@@ -1,7 +1,4 @@
-import {
-  Controller,
-  Post,
-} from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 import { PrService } from './pr.service';
 
 @Controller('create')
@@ -10,6 +7,6 @@ export class PrController {
 
   @Post()
   create() {
-    return this.prService.create();
+    // return this.prService.create();
   }
 }

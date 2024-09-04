@@ -66,6 +66,10 @@ export class PrService {
 
     const submit = await this.submit(token, id1).toPromise();
 
-    return id1;
+    // return id1;
+
+    return {
+      data: submit.data,
+    };
   }
 }
